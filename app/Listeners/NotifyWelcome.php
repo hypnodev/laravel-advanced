@@ -25,8 +25,6 @@ class NotifyWelcome
      */
     public function handle($event)
     {
-        // $user->notify(new Welcome());
-        // TODO: Inviamo email agli admin
-        // TODO: Relation
+        // TODO: Inviare email
     }
 }

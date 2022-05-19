@@ -43,22 +43,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function auditLogs()
-    {
-        return $this->hasMany(AuditLog::class);
-    }
-
-    // updated, deleted, saved, created
-    // protected $dispatchesEvents = [
-    //    'created' => UserCreated::class
-    // ];
+//    protected $dispatchesEvents = [
+//        'created' => UserCreated::class
+//    ];
 
 //    protected static function booted()
 //    {
 //        static::created(function (User $user) {
-//            $user->auditLogs()->create([
-//                'log' => 'utente creato'
-//            ]);
+//            logger('utente creato, da model@booted');
 //        });
 //    }
 }

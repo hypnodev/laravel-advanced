@@ -25,6 +25,6 @@ class LogCreation
      */
     public function handle($event)
     {
-        logger('utente creato');
+        logger('utente creato, messaggio da LogCreation');
     }
 }

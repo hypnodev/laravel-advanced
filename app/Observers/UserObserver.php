@@ -14,9 +14,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        $user->auditLogs()->create([
-            'log' => 'utente creato'
-        ]);
+        logger('utente creato da UserObserver');
     }
 
     /**
@@ -27,9 +25,7 @@ class UserObserver
      */
     public function updated(User $user)
     {
-        $user->auditLogs()->create([
-            'log' => 'utente aggiornato'
-        ]);
+        //
     }
 
     /**
@@ -40,9 +36,7 @@ class UserObserver
      */
     public function deleted(User $user)
     {
-        $user->auditLogs()->create([
-            'log' => "utente {$user->id} eliminato"
-        ]);
+        //
     }
 
     /**
