@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Jobs\JobTest;
+use App\Models\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,6 +18,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('test:progress-bar')->twiceDaily();
+        $schedule->job(new JobTest(new User, false))->twiceDaily();
     }
 
     /**

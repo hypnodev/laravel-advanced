@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use App\Notifications\Newsletter;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 
@@ -15,5 +17,20 @@ use Illuminate\Support\Facades\Artisan;
 */
 
 Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
+    $this->comment('Ciao Laravel Advanced');
 })->purpose('Display an inspiring quote');
+
+Artisan::command('mass-user', function ($email) {
+    $users = User::all();
+//    if ($users->count() < 100) {
+//        $this->error('Numero minimo di utenti: 100');
+//        return 1;
+//    }
+
+    $users->each(function (User $user) {
+        $user->notify(new Newsletter());
+    });
+    $this->info('Newsletter inviata');
+
+    return 0;
+})->purpose('Inviare email a tutti gli utenti');

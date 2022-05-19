@@ -6,6 +6,7 @@ use App\Events\UserCreated;
 use App\Jobs\JobTest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
