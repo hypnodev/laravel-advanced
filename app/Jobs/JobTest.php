@@ -20,11 +20,11 @@ class JobTest implements ShouldQueue
      * @return void
      */
     public function __construct(
-        private $condition,
-        private $user,
+        private User $user,
+        private bool $condition,
     )
     {
-        //
+        $this->queue = 'users';
     }
 
     /**
@@ -38,7 +38,5 @@ class JobTest implements ShouldQueue
         // ESTRAPOLAZIONE AUDIO
         // ...
         // ...
-
-        $this->user->notify();
     }
 }
