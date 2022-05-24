@@ -45,7 +45,7 @@ class AuthController extends Controller
         ];
 
         if (auth()->attempt($data)) {
-            JobTest::dispatch(auth()->user(), true);
+            // JobTest::dispatch(auth()->user(), true);
             $token = auth()->user()?->createToken('laravel-advanced')->accessToken;
             return response()->json([
                 'token' => $token,
