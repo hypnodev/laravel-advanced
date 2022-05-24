@@ -31,4 +31,15 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'geocoding' => [
+        'service' => 'openstreetmap',
+
+        'openstreetmap' => [
+            'apikey' => env('OPENSTREETMAP_API_KEY', 'test-apikey')
+        ],
+
+        'googlemaps' => [
+            'apikey' => env('GOOGLEMAPS_API_KEY', 'test-apikey')
+        ]
+    ],
 ];

@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/search_users', [\App\Http\Controllers\UserController::class, 'findByEmail']);
+Route::post('/search_address', [\App\Http\Controllers\GeocodingController::class, 'searchAddress']);
+Route::post('/search_address_google', [\App\Http\Controllers\GeocodingController::class, 'searchAddressUsingGoogleMaps']);
+
 Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
 Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 
