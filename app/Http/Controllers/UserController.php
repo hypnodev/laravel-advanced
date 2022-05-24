@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function __construct(
+        private UserRepository $userRepository
+    )
+    {
+        //
+    }
+
     public function findByEmail(Request $request)
     {
-        $user = app(UserRepository::class)->find($request->email);
+        $user = $this->userRepository->find($request->email);
         return response()->json($user);
     }
 }

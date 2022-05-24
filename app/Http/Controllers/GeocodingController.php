@@ -8,11 +8,10 @@ use Illuminate\Http\Request;
 
 class GeocodingController extends Controller
 {
-    private GeocodingService $geocodingService;
-
-    public function __construct(GeocodingService $geocodingService)
-    {
-        $this->geocodingService = $geocodingService;
+    public function __construct(
+        private GeocodingService $geocodingService
+    ) {
+        //
     }
 
     public function searchAddress(Request $request)
