@@ -18,8 +18,10 @@ Route::post('/search_users', [\App\Http\Controllers\UserController::class, 'find
 Route::post('/search_address', [\App\Http\Controllers\GeocodingController::class, 'searchAddress']);
 Route::post('/search_address_google', [\App\Http\Controllers\GeocodingController::class, 'searchAddressUsingGoogleMaps']);
 
-Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
-Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::middleware('locale:it')->group(function () {
+    Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
+    Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
+});
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/me', [\App\Http\Controllers\AuthController::class, 'me']);

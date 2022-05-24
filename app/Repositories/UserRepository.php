@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\User;
 use App\Repositories\Interfaces\UserRepository as UserRepositoryAlias;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryAlias
 {
@@ -15,5 +16,14 @@ class UserRepository implements UserRepositoryAlias
         }
 
         return $user;
+    }
+
+    public function create(string $name, string $email, string $password): User
+    {
+        return User::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => Hash::make($password)
+        ]);
     }
 }

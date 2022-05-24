@@ -5,19 +5,26 @@ namespace App\Http\Controllers;
 use App\Events\UserCreated;
 use App\Jobs\JobTest;
 use App\Models\User;
+use App\Repositories\Interfaces\UserRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function __construct(
+        private UserRepository $userRepository
+    ) {
+        //
+    }
+
     public function register(Request $request)
     {
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+        $request->validate([
+            'name' => ['required', 'alpha', 'bail'],
+            'email' => ['required', 'email', 'unique:users,email', 'bail'],
+            'password' => ['required', 'min:8', 'bail']
         ]);
+
+        $user = $this->userRepository->create($request->name, $request->email, $request->password);
 
         $token = $user->createToken('laravel-advanced')->accessToken;
         return response()->json([
@@ -28,13 +35,17 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $request->validate([
+            'password' => ['min:8']
+        ]);
+
         $data = [
             'email' => $request->email,
             'password' => $request->password
         ];
 
         if (auth()->attempt($data)) {
-            JobTest::dispatch(auth()->user(), true);
+            // JobTest::dispatch(auth()->user(), true);
             $token = auth()->user()?->createToken('laravel-advanced')->accessToken;
             return response()->json([
                 'token' => $token,
