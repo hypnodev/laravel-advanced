@@ -17,7 +17,12 @@ class UserController extends Controller
 
     public function findByEmail(Request $request)
     {
-        $user = $this->userRepository->find($request->email);
+        try {
+            $user = $this->userRepository->find($request->email);
+        } catch (\Exception $exception) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
         return response()->json($user);
     }
 }
