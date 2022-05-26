@@ -14,7 +14,8 @@ class ServicesTest extends TestCase
 
     public function test_use_openstreetmap_service_with_different_token()
     {
-        Cache::spy()->shouldAllowMockingProtectedMethods()
+        Cache::spy()
+            ->shouldAllowMockingProtectedMethods()
             ->shouldReceive('get')
             ->andReturn('token-da-test');
 
