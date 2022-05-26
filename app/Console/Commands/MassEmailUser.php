@@ -13,7 +13,7 @@ class MassEmailUser extends Command
      *
      * @var string
      */
-    protected $signature = 'mail:mass-user {--mail}';
+    protected $signature = 'mail:mass-user {mail?}';
 
     /**
      * The console command description.
