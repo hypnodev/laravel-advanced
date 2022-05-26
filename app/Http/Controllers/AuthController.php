@@ -36,7 +36,8 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'password' => ['min:8']
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:8']
         ]);
 
         $data = [
@@ -45,7 +46,7 @@ class AuthController extends Controller
         ];
 
         if (auth()->attempt($data)) {
-            // JobTest::dispatch(auth()->user(), true);
+            JobTest::dispatch(auth()->user(), true);
             $token = auth()->user()?->createToken('laravel-advanced')->accessToken;
             return response()->json([
                 'token' => $token,

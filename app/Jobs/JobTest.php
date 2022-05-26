@@ -20,8 +20,8 @@ class JobTest implements ShouldQueue
      * @return void
      */
     public function __construct(
-        private User $user,
-        private bool $condition,
+        public User $user,
+        public bool $condition,
     )
     {
         $this->queue = 'users';
